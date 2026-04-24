@@ -4,14 +4,7 @@ import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-interface PostData {
-  slug: string;
-  title: string;
-  date: string;
-  description?: string;
-}
-
-export function getAllPosts(): PostData[] {
+export function getAllPosts() {
   const fileNames = fs.readdirSync(postsDirectory);
 
   return fileNames
@@ -22,15 +15,15 @@ export function getAllPosts(): PostData[] {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data } = matter(fileContents);
 
-      return { slug, ...(data as Omit<PostData, "slug">) };
+      return { slug, ...data };
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getPostBySlug(slug: string) {
+export function getPostBySlug(slug) {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  return { slug, content, ...(data as Omit<PostData, "slug">) };
+  return { slug, content, ...data };
 }
