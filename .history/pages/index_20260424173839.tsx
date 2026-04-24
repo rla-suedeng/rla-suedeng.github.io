@@ -33,9 +33,8 @@ export default function Home({ posts }: { posts: Post[] }) {
             maxWidth: "500px",
           }}
         >
-          인공지능과 사람의 인지가 어떻게 닮아있는지 연구합니다.
-          <br />
-          보이는 것들에 대해 기록합니다.
+          인공지능과 사람의 인지가 어떻게 닮아있는지 연구합니다. 보이는
+          것들에대해 기록합니다.
         </p>
       </div>
 
